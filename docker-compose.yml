@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/src                    # 👈 Mounts your entire app folder
+      - /src/node_modules         # 👈 Prevents conflict with host node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true   # 👈 ADD THIS LINE
+    command: npm run dev
